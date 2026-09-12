@@ -1305,3 +1305,131 @@ button {
 #game.paused .coin {
     animation-play-state: paused;
 }
+/* =========================
+   MOBILE CONTROLS
+========================= */
+
+#mobileControls {
+
+    position: absolute;
+
+    bottom: 20px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width: 220px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    z-index: 19;
+
+    pointer-events: none;
+}
+
+
+#mobileControls button {
+
+    width: 75px;
+
+    height: 75px;
+
+    padding: 0;
+
+    border:
+        2px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.25
+        );
+
+    border-radius: 20px;
+
+    background:
+        rgba(
+            10,
+            15,
+            45,
+            0.78
+        );
+
+    color: white;
+
+    font-size: 30px;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 0 15px
+        rgba(
+            0,
+            217,
+            255,
+            0.2
+        );
+
+    backdrop-filter:
+        blur(6px);
+
+    -webkit-backdrop-filter:
+        blur(6px);
+
+    pointer-events: auto;
+
+    touch-action: manipulation;
+
+    user-select: none;
+
+    -webkit-user-select: none;
+
+    transition:
+        transform 0.08s,
+        background 0.08s;
+}
+
+
+#mobileControls button:active {
+
+    transform:
+        scale(0.9);
+
+    background:
+        rgba(
+            0,
+            217,
+            255,
+            0.35
+        );
+
+    box-shadow:
+        0 0 20px
+        rgba(
+            0,
+            217,
+            255,
+            0.5
+        );
+}
+
+
+/* =========================
+   HIDE MOBILE CONTROLS ON PC
+========================= */
+
+@media (min-width: 700px) {
+
+    #mobileControls {
+
+        display: none;
+
+    }
+
+}

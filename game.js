@@ -40,6 +40,11 @@ const pauseButton =
 const resumeButton =
     document.getElementById("resumeButton");
 
+const leftButton =
+    document.getElementById("leftButton");
+
+const rightButton =
+    document.getElementById("rightButton");
 const startButton =
     document.getElementById("startButton");
 
@@ -292,7 +297,47 @@ characterButtons.forEach(
 // =========================
 // CONTROLS
 // =========================
+function movePlayer(direction) {
 
+    if (
+        !gameRunning ||
+        paused
+    ) {
+        return;
+    }
+
+    const speed =
+        speedUpgradeBought
+            ? 35
+            : 25;
+
+    playerX +=
+        direction * speed;
+
+    if (playerX < 0) {
+        playerX = 0;
+    }
+
+    if (playerX > 358) {
+        playerX = 358;
+    }
+
+    player.classList.add(
+        "running"
+    );
+
+    player.style.left =
+        playerX + "px";
+
+    setTimeout(
+        () => {
+            player.classList.remove(
+                "running"
+            );
+        },
+        200
+    );
+}
 document.addEventListener(
     "keydown",
     event => {
@@ -329,31 +374,16 @@ document.addEventListener(
 
 
         if (
-            event.key === "ArrowLeft"
-        ) {
+    event.key === "ArrowLeft"
+) {
+    movePlayer(-1);
+}
 
-            const speed =
-                speedUpgradeBought
-                    ? 35
-                    : 25;
-
-
-            playerX -= speed;
-        }
-
-
-        if (
-            event.key === "ArrowRight"
-        ) {
-
-            const speed =
-                speedUpgradeBought
-                    ? 35
-                    : 25;
-
-
-            playerX += speed;
-        }
+if (
+    event.key === "ArrowRight"
+) {
+    movePlayer(1);
+}
 
 
         if (
@@ -376,6 +406,30 @@ document.addEventListener(
     }
 );
 
+// =========================
+// MOBILE CONTROLS
+// =========================
+
+leftButton.addEventListener(
+    "pointerdown",
+    event => {
+
+        event.preventDefault();
+
+        movePlayer(-1);
+    }
+);
+
+
+rightButton.addEventListener(
+    "pointerdown",
+    event => {
+
+        event.preventDefault();
+
+        movePlayer(1);
+    }
+);
 
 // =========================
 // CREATE OBSTACLE
