@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>DODGE</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+<div id="game">
+
+
+    <!-- =========================
+         HUD
+    ========================== -->
+
+    <div id="score">
+        Score: 0
+    </div>
+
+
+    <div id="bestScore">
+        Best: 0
+    </div>
+
+
+    <div id="level">
+        Level: 1
+    </div>
+
+
+    <div id="lives">
+        ❤️❤️❤️
+    </div>
+
+
+    <div id="coins">
+        🪙 0
+    </div>
+
+
+    <button id="pauseButton">
+        Ⅱ
+    </button>
+
+
+    <!-- =========================
+         PLAYER
+    ========================== -->
+
+    <div id="player">
+
+        <div class="arm left-arm"></div>
+
+        <div class="arm right-arm"></div>
+
+        <div class="leg left-leg"></div>
+
+        <div class="leg right-leg"></div>
+
+    </div>
+
+
+    <!-- =========================
+         START SCREEN
+    ========================== -->
+
+    <div
+        id="startScreen"
+        class="screen"
+    >
+
+        <h1>DODGE</h1>
+
+        <p>
+            Move with ← →
+        </p>
+
+        <p class="small">
+            Choose your character
+        </p>
+
+
+        <div class="characters">
+
+            <button
+                class="characterButton selected"
+                data-character="blue"
+            >
+                🔵
+            </button>
+
+
+            <button
+                class="characterButton"
+                data-character="red"
+            >
+                🔴
+            </button>
+
+
+            <button
+                class="characterButton"
+                data-character="gold"
+            >
+                🟡
+            </button>
+
+        </div>
+
+
+        <button
+            id="startButton"
+            class="mainButton"
+        >
+            START GAME
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         PAUSE
+    ========================== -->
+
+    <div
+        id="pauseScreen"
+        class="screen"
+        style="display:none;"
+    >
+
+        <h1>PAUSED</h1>
+
+
+        <button
+            id="resumeButton"
+            class="mainButton"
+        >
+            RESUME
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         GAME OVER
+    ========================== -->
+
+    <div
+        id="gameOver"
+        class="screen"
+        style="display:none;"
+    >
+
+        <h1>GAME OVER</h1>
+
+
+        <p id="finalScore">
+            Score: 0
+        </p>
+
+
+        <p id="finalLevel">
+            Level: 1
+        </p>
+
+
+        <p id="earnedCoins">
+            🪙 +0
+        </p>
+
+
+        <button
+            id="restartButton"
+            class="mainButton"
+        >
+            PLAY AGAIN
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         SHOP
+    ========================== -->
+
+    <div
+        id="shopScreen"
+        class="screen"
+        style="display:none;"
+    >
+
+        <h1>SHOP</h1>
+
+
+        <p>
+            Coins:
+            🪙
+            <span id="shopCoins">
+                0
+            </span>
+        </p>
+
+
+        <div class="shopItem">
+
+            <h3>
+                ❤️ Extra Life
+            </h3>
+
+
+            <p>
+                Start with 4 lives
+            </p>
+
+
+            <button id="lifeUpgrade">
+                BUY — 🪙 25
+            </button>
+
+        </div>
+
+
+        <div class="shopItem">
+
+            <h3>
+                ⚡ Speed
+            </h3>
+
+
+            <p>
+                Move faster
+            </p>
+
+
+            <button id="speedUpgrade">
+                BUY — 🪙 30
+            </button>
+
+        </div>
+
+
+        <button
+            id="closeShop"
+            class="mainButton"
+        >
+            CLOSE
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         SHOP BUTTON
+    ========================== -->
+
+    <button
+        id="shopButton"
+        class="shopButton"
+    >
+        🛒
+    </button>
+
+
+</div>
+
+
+<script src="game.js"></script>
+
+</body>
+
+</html>
