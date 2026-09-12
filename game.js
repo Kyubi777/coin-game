@@ -127,7 +127,8 @@ let coinObjects = [];
 
 
 let animationId;
-
+let mobileDirection = 0;
+let mobileMoveInterval = null;
 
 // =========================
 // UPGRADES
@@ -410,13 +411,59 @@ if (
 // MOBILE CONTROLS
 // =========================
 
+// =========================
+// MOBILE HOLD CONTROLS
+// =========================
+
+function startMobileMove(direction) {
+
+    if (!gameRunning || paused) {
+        return;
+    }
+
+    mobileDirection = direction;
+
+    movePlayer(direction);
+
+    if (mobileMoveInterval) {
+        clearInterval(mobileMoveInterval);
+    }
+
+    mobileMoveInterval = setInterval(() => {
+
+        if (!gameRunning || paused) {
+            stopMobileMove();
+            return;
+        }
+
+        movePlayer(mobileDirection);
+
+    }, 70);
+}
+
+
+function stopMobileMove() {
+
+    mobileDirection = 0;
+
+    if (mobileMoveInterval) {
+
+        clearInterval(
+            mobileMoveInterval
+        );
+
+        mobileMoveInterval = null;
+    }
+}
+
+
 leftButton.addEventListener(
     "pointerdown",
     event => {
 
         event.preventDefault();
 
-        movePlayer(-1);
+        startMobileMove(-1);
     }
 );
 
@@ -427,8 +474,20 @@ rightButton.addEventListener(
 
         event.preventDefault();
 
-        movePlayer(1);
+        startMobileMove(1);
     }
+);
+
+
+window.addEventListener(
+    "pointerup",
+    stopMobileMove
+);
+
+
+window.addEventListener(
+    "pointercancel",
+    stopMobileMove
 );
 
 // =========================
