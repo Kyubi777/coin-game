@@ -429,7 +429,7 @@ function createObstacle() {
     const speed =
         3 +
         Math.random() * 2 +
-        level * 0.45;
+        level * 70;
 
 
     obstacles.push({
