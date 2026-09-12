@@ -46,26 +46,49 @@ body {
     overflow: hidden;
 
     background:
-        radial-gradient(
-            circle at 50% 20%,
-            #182060,
-            #080b25 45%,
-            #03030d
-        );
-
+    radial-gradient(
+        circle at 50% 20%,
+        #182060,
+        #080b25 45%,
+        #03030d 75%
+    ),
+    radial-gradient(
+        circle at 50% 100%,
+        rgba(
+            0,
+            180,
+            255,
+            0.12
+        ),
+        transparent 55%
+    );
     border:
         2px solid #3434aa;
 
     border-radius: 16px;
 
     box-shadow:
-        0 0 40px
-        rgba(
-            70,
-            70,
-            255,
-            0.35
-        );
+    0 0 20px
+    rgba(
+        70,
+        70,
+        255,
+        0.25
+    ),
+    0 0 60px
+    rgba(
+        70,
+        70,
+        255,
+        0.18
+    ),
+    inset 0 0 30px
+    rgba(
+        0,
+        0,
+        0,
+        0.35
+    );
 }
 
 
@@ -86,6 +109,22 @@ body {
     border-radius: 50%;
 
     opacity: 0.7;
+
+    box-shadow:
+        0 0 4px
+        rgba(
+            255,
+            255,
+            255,
+            0.8
+        ),
+        0 0 8px
+        rgba(
+            140,
+            190,
+            255,
+            0.35
+        );
 
     pointer-events: none;
 
@@ -117,9 +156,23 @@ body {
 
     filter:
         drop-shadow(
-            0 0 8px
+            0 0 5px
             #00eaff
+        )
+        drop-shadow(
+            0 0 12px
+            #00eaff
+        )
+        drop-shadow(
+            0 0 24px
+            rgba(
+                0,
+                234,
+                255,
+                0.45
+            )
         );
+
 }
 
 
@@ -787,6 +840,21 @@ body {
 
     z-index: 10;
 }
+#score,
+#bestScore,
+#level,
+#lives,
+#coins {
+
+    text-shadow:
+        0 0 8px
+        rgba(
+            0,
+            234,
+            255,
+            0.25
+        );
+}
 
 
 /* =========================
@@ -807,7 +875,14 @@ body {
 
     padding: 0;
 
-    border: none;
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.18
+        );
 
     border-radius: 8px;
 
@@ -816,7 +891,7 @@ body {
             255,
             255,
             255,
-            0.12
+            0.10
         );
 
     color: white;
@@ -826,6 +901,51 @@ body {
     cursor: pointer;
 
     z-index: 30;
+
+    box-shadow:
+        0 0 10px
+        rgba(
+            0,
+            234,
+            255,
+            0.12
+        );
+
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+
+#pauseButton:hover {
+
+    transform:
+        scale(1.08);
+
+    background:
+        rgba(
+            0,
+            234,
+            255,
+            0.16
+        );
+
+    box-shadow:
+        0 0 16px
+        rgba(
+            0,
+            234,
+            255,
+            0.30
+        );
+}
+
+
+#pauseButton:active {
+
+    transform:
+        scale(0.92);
 }
 
 
@@ -935,6 +1055,14 @@ body {
     border-color:
         #00eaff;
 
+    background:
+        rgba(
+            0,
+            234,
+            255,
+            0.14
+        );
+
     box-shadow:
         0 0 15px
         rgba(
@@ -942,9 +1070,44 @@ body {
             234,
             255,
             0.5
+        ),
+        0 0 28px
+        rgba(
+            0,
+            234,
+            255,
+            0.22
         );
+
+    transform:
+        scale(1.05);
+
+}
+.characterButton {
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        border-color 0.15s ease;
 }
 
+
+.characterButton:hover {
+
+    transform:
+        translateY(-3px)
+        scale(1.05);
+
+    box-shadow:
+        0 0 18px
+        rgba(
+            0,
+            234,
+            255,
+            0.3
+        );
+
+}
 
 /* =========================
    BUTTONS
@@ -987,7 +1150,36 @@ button {
             0.4
         );
 }
+.mainButton {
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
 
+.mainButton:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 25px
+        rgba(
+            0,
+            217,
+            255,
+            0.65
+        );
+}
+.mainButton:active {
+    transform: translateY(1px) scale(0.97);
+
+    box-shadow:
+        0 0 12px
+        rgba(
+            0,
+            217,
+            255,
+            0.35
+        );
+}
 
 .mainButton:hover {
 
@@ -1012,6 +1204,8 @@ button {
 
     height: 45px;
 
+    padding: 0;
+
     border-radius: 12px;
 
     background:
@@ -1019,12 +1213,67 @@ button {
             255,
             255,
             255,
-            0.12
+            0.10
+        );
+
+    border:
+        1px solid
+        rgba(
+            0,
+            234,
+            255,
+            0.35
         );
 
     font-size: 22px;
 
     z-index: 30;
+
+    box-shadow:
+        0 0 12px
+        rgba(
+            0,
+            234,
+            255,
+            0.18
+        );
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease;
+}
+
+
+.shopButton:hover {
+
+    transform:
+        translateY(-2px)
+        scale(1.04);
+
+    background:
+        rgba(
+            0,
+            234,
+            255,
+            0.16
+        );
+
+    box-shadow:
+        0 0 20px
+        rgba(
+            0,
+            234,
+            255,
+            0.35
+        );
+}
+
+
+.shopButton:active {
+
+    transform:
+        scale(0.94);
 }
 
 
@@ -1043,14 +1292,51 @@ button {
     border-radius: 12px;
 
     background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.10),
+            rgba(255,255,255,0.04)
+        );
+
+    border:
+        1px solid
         rgba(
             255,
             255,
             255,
-            0.07
+            0.10
         );
 
     text-align: center;
+
+    box-shadow:
+        0 0 15px
+        rgba(
+            70,
+            70,
+            255,
+            0.12
+        );
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+
+.shopItem:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 0 22px
+        rgba(
+            70,
+            70,
+            255,
+            0.25
+        );
 }
 
 
@@ -1068,7 +1354,60 @@ button {
     border-radius: 8px;
 
     background:
-        #3434aa;
+        linear-gradient(
+            135deg,
+            #3434aa,
+            #5c5cff
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.15
+        );
+
+    color: white;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 10px
+        rgba(
+            92,
+            92,
+            255,
+            0.25
+        );
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+
+.shopItem button:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 0 16px
+        rgba(
+            92,
+            92,
+            255,
+            0.45
+        );
+}
+
+
+.shopItem button:active {
+
+    transform:
+        scale(0.96);
 }
 
 
@@ -1449,5 +1788,401 @@ button {
 
         transform-origin: center center;
     }
+
+}
+/* =========================
+   GAME OVER SCREEN
+========================= */
+
+#gameOver h1 {
+
+    text-shadow:
+        0 0 10px #ff3b3b,
+        0 0 25px rgba(255, 60, 60, 0.7);
+
+    animation:
+        gameOverGlow
+        2s
+        infinite
+        ease-in-out;
+}
+
+
+#gameOver p {
+
+    font-size: 18px;
+
+    color: #ddd;
+
+    text-shadow:
+        0 0 8px
+        rgba(255,255,255,0.2);
+}
+
+
+@keyframes gameOverGlow {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.04);
+    }
+}
+/* =========================
+   PAUSE SCREEN
+========================= */
+
+#pauseScreen h1 {
+
+    text-shadow:
+        0 0 10px #00eaff,
+        0 0 25px rgba(0, 234, 255, 0.6);
+
+    animation:
+        pauseGlow
+        2.5s
+        infinite
+        ease-in-out;
+}
+
+
+@keyframes pauseGlow {
+
+    0%,
+    100% {
+        opacity: 0.85;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.03);
+    }
+}
+/* =========================
+   DODGE TITLE
+========================= */
+
+#startScreen h1 {
+
+    font-size: 58px;
+
+    letter-spacing: 8px;
+
+    text-shadow:
+        0 0 8px #00eaff,
+        0 0 20px #00eaff,
+        0 0 40px rgba(92, 92, 255, 0.8);
+
+    animation:
+        titleGlow
+        3s
+        infinite
+        ease-in-out;
+}
+
+
+@keyframes titleGlow {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+}
+#startButton {
+    animation:
+        startButtonGlow
+        2.5s
+        infinite
+        ease-in-out;
+}
+
+@keyframes startButtonGlow {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 20px
+            rgba(
+                0,
+                217,
+                255,
+                0.4
+            );
+    }
+
+    50% {
+        box-shadow:
+            0 0 30px
+            rgba(
+                0,
+                217,
+                255,
+                0.65
+            );
+    }
+}
+/* =========================
+   BEST SCORE HIGHLIGHT
+========================= */
+
+#finalBestScore {
+
+    color: #00eaff;
+
+    font-weight: bold;
+
+    text-shadow:
+        0 0 8px #00eaff,
+        0 0 18px rgba(
+            0,
+            234,
+            255,
+            0.45
+        );
+
+}
+/* =========================
+   GAME INNER GLOW
+========================= */
+
+#game::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: 14px;
+
+    pointer-events: none;
+
+    box-shadow:
+        inset 0 0 25px
+        rgba(
+            0,
+            234,
+            255,
+            0.08
+        ),
+        inset 0 0 60px
+        rgba(
+            70,
+            70,
+            255,
+            0.08
+        );
+
+    z-index: 18;
+}
+/* =========================
+   GAME ENTRANCE
+========================= */
+
+#game {
+    animation:
+        gameEntrance
+        0.6s
+        ease-out;
+}
+
+@keyframes gameEntrance {
+
+    0% {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+/* =========================
+   HUD PANELS
+========================= */
+
+#score,
+#bestScore,
+#level,
+#lives,
+#coins {
+
+    padding:
+        3px 7px;
+
+    border-radius: 6px;
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.18
+        );
+
+    backdrop-filter:
+        blur(3px);
+
+    -webkit-backdrop-filter:
+        blur(3px);
+}
+/* =========================
+   LEVEL HIGHLIGHT
+========================= */
+
+#level {
+
+    color: #00eaff;
+
+    text-shadow:
+        0 0 6px #00eaff,
+        0 0 14px rgba(
+            0,
+            234,
+            255,
+            0.45
+        );
+
+}
+#pauseButton {
+
+    animation:
+        pauseButtonGlow
+        3s
+        infinite
+        ease-in-out;
+
+}
+
+@keyframes pauseButtonGlow {
+
+    0%,
+    100% {
+
+        box-shadow:
+            0 0 10px
+            rgba(
+                0,
+                234,
+                255,
+                0.12
+            );
+
+    }
+
+    50% {
+
+        box-shadow:
+            0 0 16px
+            rgba(
+                0,
+                234,
+                255,
+                0.28
+            );
+
+    }
+
+}
+/* =========================
+   PAUSE OVERLAY
+========================= */
+
+#pauseScreen {
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(
+                0,
+                234,
+                255,
+                0.08
+            ),
+            rgba(
+                3,
+                3,
+                15,
+                0.95
+            ) 65%
+        );
+
+    backdrop-filter:
+        blur(2px);
+
+    -webkit-backdrop-filter:
+        blur(2px);
+
+}
+/* =========================
+   HUD DIVIDER
+========================= */
+
+#game::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 92px;
+
+    left: 15px;
+
+    right: 15px;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(
+                0,
+                234,
+                255,
+                0.35
+            ),
+            transparent
+        );
+
+    box-shadow:
+        0 0 8px
+        rgba(
+            0,
+            234,
+            255,
+            0.18
+        );
+
+    pointer-events: none;
+
+    z-index: 9;
+
+}
+/* =========================
+   SHOP SCREEN PRIORITY
+========================= */
+
+#shopScreen {
+
+    z-index: 50;
+
+    pointer-events: auto;
+
+}
+
+#shopScreen button {
+
+    pointer-events: auto;
 
 }

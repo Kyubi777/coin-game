@@ -1498,8 +1498,10 @@ function gameOver() {
 
     coinsElement.textContent =
         "🪙 " + coins;
-
-
+if (finalBestScore) {
+    finalBestScore.textContent =
+        "Best Score: " + bestScore;
+}
     gameOverScreen.style.display =
         "flex";
 
@@ -1600,29 +1602,35 @@ restartButton.addEventListener(
 // SHOP
 // =========================
 
-shopButton.addEventListener(
-    "click",
-    () => {
+shopButton.addEventListener("click", () => {
 
-        shopCoins.textContent =
-            coins;
-
-
-        shopScreen.style.display =
-            "flex";
+    if (!gameRunning) {
+        return;
     }
-);
+
+    paused = true;
+
+    shopScreen.style.display = "flex";
+
+});
 
 
 closeShop.addEventListener(
     "click",
     () => {
 
+        paused = false;
+
+        game.classList.remove(
+            "paused"
+        );
+
         shopScreen.style.display =
             "none";
+
+        gameLoop();
     }
 );
-
 
 // =========================
 // EXTRA LIFE
