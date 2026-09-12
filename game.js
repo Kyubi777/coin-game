@@ -45,7 +45,11 @@ const leftButton =
 
 const rightButton =
     document.getElementById("rightButton");
-const startButton =
+
+const startBestScore =
+    document.getElementById("startBestScore");
+
+    const startButton =
     document.getElementById("startButton");
 
 const restartButton =
@@ -104,7 +108,10 @@ let bestScore =
     Number(
         localStorage.getItem("bestScore")
     ) || 0;
-
+if (startBestScore) {
+    startBestScore.textContent =
+        "Best Score: " + bestScore;
+}
 
 let gameRunning = false;
 
