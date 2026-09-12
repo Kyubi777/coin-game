@@ -1433,3 +1433,21 @@ button {
     }
 
 }
+/* =========================
+   RESPONSIVE GAME SCALE
+========================= */
+
+@media (max-width: 699px) {
+
+    #game {
+        transform: scale(
+            min(
+                1,
+                calc((100vw - 20px) / 400)
+            )
+        );
+
+        transform-origin: center center;
+    }
+
+}
