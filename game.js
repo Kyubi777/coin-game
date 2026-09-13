@@ -97,6 +97,8 @@ let maxLives = 3;
 
 let level = 1;
 
+let combo = 0;
+
 
 let coins =
     Number(
@@ -121,6 +123,7 @@ let invincible = false;
 
 let shieldActive = false;
 
+let speedMultiplier = 1;
 
 let selectedCharacter =
     "blue";
@@ -619,27 +622,18 @@ function createPowerup() {
         "powerup";
 
 
-    if (
-        Math.random() < 0.5
-    ) {
+    const random = Math.random();
 
-        powerup.textContent =
-            "⚡";
-
-
-        powerup.dataset.type =
-            "shield";
-
-    } else {
-
-        powerup.textContent =
-            "💣";
-
-
-        powerup.dataset.type =
-            "bomb";
-    }
-
+if (random < 0.33) {
+    powerup.textContent = "⚡";
+    powerup.dataset.type = "shield";
+} else if (random < 0.66) {
+    powerup.textContent = "💣";
+    powerup.dataset.type = "bomb";
+} else {
+    powerup.textContent = "🧊";
+    powerup.dataset.type = "slowMotion";
+}
 
     powerup.style.left =
         Math.random() * 362 + "px";
@@ -1026,7 +1020,6 @@ function activatePowerup(
             }
         );
 
-
         obstacles = [];
 
 
@@ -1040,6 +1033,21 @@ function activatePowerup(
         updateLevel();
     }
 
+    if (type === "slowMotion") {
+    speedMultiplier = 0.5;
+
+    playSound(
+        500,
+        0.2
+    );
+
+    setTimeout(
+        () => {
+            speedMultiplier = 1;
+        },
+        5000
+    );
+}
 
     powerup.element.remove();
 
@@ -1117,8 +1125,7 @@ function gameLoop() {
             obstacles[i];
 
 
-        obstacle.y +=
-            obstacle.speed;
+        obstacle.y += obstacle.speed * speedMultiplier;
 
 
         obstacle.element.style.top =
@@ -1135,6 +1142,7 @@ function gameLoop() {
                 obstacle
             );
 
+            combo = 0
 
             continue;
         }
@@ -1146,7 +1154,12 @@ function gameLoop() {
 
             score++;
 
+            combo++
 
+            if (combo === 5) {
+        score += 5;
+        combo = 0;
+    }
             scoreElement.textContent =
                 "Score: " + score;
 
@@ -1182,8 +1195,7 @@ function gameLoop() {
             coinObjects[i];
 
 
-        coin.y +=
-            coin.speed;
+        coin.y += coin.speed * speedMultiplier;
 
 
         coin.element.style.top =
@@ -1237,8 +1249,7 @@ function gameLoop() {
             powerups[i];
 
 
-        powerup.y +=
-            powerup.speed;
+        powerup.y += powerup.speed * speedMultiplier;
 
 
         powerup.element.style.top =
@@ -1383,6 +1394,8 @@ function startGame() {
     invincible = false;
 
     shieldActive = false;
+    
+    speedMultiplier = 1;
 
     paused = false;
 
