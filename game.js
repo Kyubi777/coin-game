@@ -11,6 +11,9 @@ const scoreElement =
 const bestScoreElement =
     document.getElementById("bestScore");
 
+    const comboElement = 
+    document.getElementById("comboDisplay");
+
 const levelElement =
     document.getElementById("level");
 
@@ -123,11 +126,13 @@ let invincible = false;
 
 let shieldActive = false;
 
-let speedMultiplier = 1;
+let speedMultiplier = 0.3;
 
 let selectedCharacter =
     "blue";
+let movingLeft = false;
 
+let movingRight = false;
 
 let obstacles = [];
 
@@ -387,13 +392,13 @@ document.addEventListener(
         if (
     event.key === "ArrowLeft"
 ) {
-    movePlayer(-1);
+    movingLeft = true;
 }
 
 if (
     event.key === "ArrowRight"
 ) {
-    movePlayer(1);
+    movingRight = true;
 }
 
 
@@ -416,7 +421,20 @@ if (
 
     }
 );
+document.addEventListener(
+    "keyup",
+    event => {
 
+        if (event.key === "ArrowLeft") {
+            movingLeft = false;
+        }
+
+        if (event.key === "ArrowRight") {
+            movingRight = false;
+        }
+
+    }
+);
 // =========================
 // MOBILE CONTROLS
 // =========================
@@ -1034,7 +1052,7 @@ function activatePowerup(
     }
 
     if (type === "slowMotion") {
-    speedMultiplier = 0.5;
+    speedMultiplier = 0.2;
 
     playSound(
         500,
@@ -1043,7 +1061,7 @@ function activatePowerup(
 
     setTimeout(
         () => {
-            speedMultiplier = 1;
+            speedMultiplier = 0.3;
         },
         5000
     );
@@ -1068,7 +1086,7 @@ function updateLevel() {
 
     const newLevel =
         Math.floor(
-            score / 10
+            score / 50
         ) + 1;
 
 
@@ -1107,6 +1125,24 @@ function gameLoop() {
         return;
     }
 
+    if (movingLeft) {
+    playerX -= 4;
+}
+
+if (movingRight) {
+    playerX += 4;
+}
+
+if (playerX < 0) {
+    playerX = 0;
+}
+
+if (playerX > 358) {
+    playerX = 358;
+}
+
+player.style.left =
+    playerX + "px";
 
     // =====================
     // OBSTACLES
@@ -1144,6 +1180,8 @@ function gameLoop() {
 
             combo = 0
 
+            comboElement.textContent = "";
+
             continue;
         }
 
@@ -1155,11 +1193,21 @@ function gameLoop() {
             score++;
 
             combo++
+            
+            comboElement.textContent = "COMBO ×" + combo;
 
             if (combo === 5) {
-        score += 5;
-        combo = 0;
-    }
+    score += 5;
+    combo = 0;
+
+    comboElement.textContent = "🔥 COMBO ×5!";
+    comboElement.classList.add("comboPop");
+
+    setTimeout(() => {
+        comboElement.textContent = "";
+        comboElement.classList.remove("comboPop");
+    }, 300);
+}
             scoreElement.textContent =
                 "Score: " + score;
 
@@ -1291,8 +1339,8 @@ function gameLoop() {
     // =====================
 
     const spawnChance =
-        0.022 +
-        level * 0.002;
+        0.018 +
+        level * 0.001;
 
 
     if (
@@ -1395,7 +1443,7 @@ function startGame() {
 
     shieldActive = false;
     
-    speedMultiplier = 1;
+    speedMultiplier = 0.3;
 
     paused = false;
 
